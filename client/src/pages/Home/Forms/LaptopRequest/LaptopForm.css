@@ -1,28 +1,32 @@
-.form-card{
+.form-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
 
 }
-.form-conatiner{
+
+.form-conatiner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 50px;
 }
-.form-conatiner input{
+
+.form-conatiner input {
     background-color: rgb(247, 247, 247);
     width: 300px;
     height: 50px;
-   font-size: 26px;
-   padding-left: 10px;
+    font-size: 26px;
+    padding-left: 10px;
 }
-.form-conatiner label{
+
+.form-conatiner label {
     font-size: 15px;
     padding-right: 5cm;
 }
-.form-conatiner button{
+
+.form-conatiner button {
     width: 300px;
     height: 50px;
     margin-top: 15px;
@@ -30,45 +34,58 @@
     font-size: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.btn1:hover{
+
+.btn1:hover {
     background-color: black;
     color: white;
 }
-.modale-content{
-    width: 400px;
-    height: 230px;
+
+.modale-content {
+    width: 500px;
+    height: 270px;
     font-size: 1.3rem;
     font-weight: 1.6rem;
-    color: whitesmoke;
+    color: white;
     border: solid 1px rgb(63, 7, 7);
-    background-color: rgb(128, 255, 0);
+    background-color: white;
     padding: 20px;
     position: absolute;
     left: 30%;
-    top: 0%;
+    top: 40%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     text-align: center;
     display: none;
 }
-.close_modale{
-   color: rgb(7, 0, 0);
-   font-size: 30px;
-   padding: 20px;
+
+.close_modale {
+    color: rgb(7, 0, 0);
+    font-size: 30px;
+    padding: 20px;
 
 }
-.close_modale:hover, .close_modale:focus{
+
+.close_modale:hover,
+.close_modale:focus {
     color: black;
     cursor: pointer;
     width: 1.5em;
 
 }
-label{
+
+label {
     color: black;
     font-size: 1.6em;
 }
-.newPragraph{
- color: green;
+
+.newPragraph {
+    color: green;
     display: hidden;
+}
+
+.close_modale {
+    text-decoration: none;
+    border: none;
+
 }
