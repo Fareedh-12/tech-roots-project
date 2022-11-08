@@ -31,7 +31,7 @@ router.get("/laptop_request", async (req, res) => {
 		const laptopRequests = result.rows.map((row) => {
 			return {
 				firstName: row.First_Name,
-				lastName: row.Last-Name,
+				lastName: row.Last - Name,
 				email: row.Email_Address,
 				phoneNumber: row.Phone_Number,
 			};
