@@ -28,7 +28,7 @@ function LaptopTable() {
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
-          <th>phone Number</th>
+					<th>phone Number</th>
 				</tr>
 			</thead>
 			<tbody>{tableRows}</tbody>

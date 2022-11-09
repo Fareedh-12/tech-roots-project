@@ -28,7 +28,7 @@ router.get("/laptop_request", async (req, res) => {
 	try {
 		const result = await db.query("SELECT * from laptop_request");
 
-		const laptopRequests = result.rows.map((row) => {
+		const laptopDonation = result.rows.map((row) => {
 			return {
 				firstName: row.firstname,
 				lastName: row.lastname,
@@ -36,7 +36,7 @@ router.get("/laptop_request", async (req, res) => {
 				phoneNumber: row.phonenumber,
 			};
 		});
-		res.json(laptopRequests);
+		res.json(laptopDonation);
 	} catch (e) {
 		console.error(e);
 		res.sendStatus(400);
@@ -68,6 +68,27 @@ router.post("/laptop_donation", (req, res) => {
 			console.error(error);
 			res.status(400).json({ success: " was not   success" });
 		});
+});
+
+router.get("/laptop_donation", async (req, res) => {
+	try {
+		const result = await db.query("SELECT * from laptop_donation");
+
+		const laptopDonation = result.rows.map((row) => {
+			return {
+				name: row.name,
+				address: row.address,
+				numberOfLaptops: row.number_of_laptops,
+				phoneNumber: row.phone_number,
+				email: row.email,
+				deliveryOption: row.delivery_option,
+			};
+		});
+		res.json(laptopDonation);
+	} catch (e) {
+		console.error(e);
+		res.sendStatus(400);
+	}
 });
 
 export default router;
