@@ -14,8 +14,13 @@ router.post("/laptop_request", (req, res) => {
 	let lastName = req.body.lastname;
 	let email = req.body.email;
 	let phoneNumber = req.body.phonenumber;
+	let firstName = req.body.firstName;
+	let lastName = req.body.lastName;
+	let email = req.body.email;
+	let phoneNumber = req.body.phoneNumber;
 	const query =
 		" insert into laptop_request (First_Name, Last_Name, Email_Address, phone_Number) values ($1, $2, $3, $4)";
+		" insert into laptop_request (firstname, lastname, email, phonenumber) values ($1, $2, $3, $4)";
 	db.query(query, [firstName, lastName, email, phoneNumber])
 		.then(() => res.send("result.rows"))
 		.catch((error) => {
@@ -30,10 +35,11 @@ router.get("/laptop_request", async (req, res) => {
 
 		const laptopRequests = result.rows.map((row) => {
 			return {
-				firstName: row.first_Name,
-				lastName: row.last_Name,
-				email: row.email_Address,
-				phoneNumber: row.Phone_Number,
+
+				firstName: row.firstname,
+				lastName: row.lastname,
+				email: row.email,
+				phoneNumber: row.phonenumber,
 			};
 		});
 		res.json(laptopRequests);

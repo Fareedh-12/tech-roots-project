@@ -42,6 +42,7 @@ function LaptopForm() {
 	const modale = document.querySelector('.modale-content');
 	const form = document.querySelector('.form');
 	
+
 	//function display greeting after submit the from
 	function messageAlert() {
 		document.body.style.backgroundColor = 'black';
