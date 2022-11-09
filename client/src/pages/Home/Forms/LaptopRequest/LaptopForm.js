@@ -38,6 +38,7 @@ function LaptopForm() {
 			headers: { "content-type": "application/json" },
 		});
 	}
+  
 	const closeModale = document.querySelector(".close_modale");
 	const btn = document.querySelector(".btn1");
 	const modale = document.querySelector(".modale-content");
@@ -114,6 +115,56 @@ function LaptopForm() {
 					<button type="submit" onClick={messageGreet} className="btn1">
 						Submit
 					</button>
+	
+	return (
+		<div className="form-card">
+			<form onSubmit={submitForm} className="form">
+			<div className="form-conatiner">
+			<label>First Name</label>
+				<input 
+				    required
+					type="text"
+					value={firstName}
+					name="firstName"
+					placeholder="first name"
+					className="firstInput"
+					onChange={handleClick}
+				/>
+				<label>Last Name</label>
+				<input 
+				    required
+					type="text"
+					value={lastName}
+					name="lastName"
+					placeholder="lastName"
+					className="firstInput"
+					onChange={handleClick}
+				/>
+				<label>Email address</label>
+				<input
+				    required
+					type="text"
+					value={email}
+					name="email"
+					placeholder="email"
+					className="firstInput"
+					onChange={handleClick}
+				/>
+				<label>Phone Number</label>
+				<input
+				    required
+					type="number"
+					value={phoneNumber}
+					name="phoneNumber"
+					placeholder="phon number"
+					className="firstInput"
+					onChange={handleClick}
+				/>
+				<button type="submit"
+				onClick={messageAlert}
+				className="btn1">
+					Submit
+				</button>
 				</div>
 			</form>
 		</div>
