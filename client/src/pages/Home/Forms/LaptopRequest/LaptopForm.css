@@ -50,6 +50,7 @@
 	border: solid 1px rgb(63, 7, 7);
 	background-color: white;
 	padding: 20px;
+	margin-top: 20%;
 	position: absolute;
 	left: 30%;
 	top: 40%;
@@ -61,7 +62,7 @@
 }
 
 .close_modale button {
-	width: 100px;
+	width: 140px;
 	height: 40px;
 	background-color: white;
 	font-size: 30px;

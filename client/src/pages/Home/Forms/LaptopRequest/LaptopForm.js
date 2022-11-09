@@ -59,19 +59,11 @@ function LaptopForm() {
 		<div className="form-card">
 			<div className="modale-content">
 				<p className="newPragraph">
-				Thank You for your completing the Request Form. Your request
-				 has been received and you have been added to our waiting list. 
-
+					Thank You for your completing the Request Form. Your request has been
+					received and you have been added to our waiting list.
 				</p>
 				<button onClick={messageClosed} className="close_modale">
-					close</button>
-			</div>
-			<form onSubmit={submitForm} className="form">
-			<div className="form-conatiner">
-				
-				<button type="submit" onClick={messageGreet}		
-				className="btn1">
-					Submit
+					close
 				</button>
 			</div>
 			<form onSubmit={submitForm} className="form">
