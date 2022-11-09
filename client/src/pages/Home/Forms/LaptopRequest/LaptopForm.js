@@ -59,8 +59,9 @@ function LaptopForm() {
 		<div className="form-card">
 			<div className="modale-content">
 				<p className="newPragraph">
-					thank you for your completing the request form. your request have been
-					recived and you have been added to our waiting list
+				Thank You for your completing the Request Form. Your request
+				 has been received and you have been added to our waiting list. 
+
 				</p>
 				<button onClick={messageClosed} className="close_modale">
 					close
