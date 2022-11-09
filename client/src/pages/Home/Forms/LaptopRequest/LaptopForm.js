@@ -1,3 +1,4 @@
+import { doc } from "prettier";
 import React, { useState } from "react";
 import "./LaptopForm.css";
 
@@ -6,7 +7,6 @@ function LaptopForm() {
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [phoneNumber, setNumber] = useState("");
-
 	function handleClick(e) {
 		if (e.target.name === "firstName") {
 			setFirst(e.target.value);
@@ -64,7 +64,14 @@ function LaptopForm() {
 
 				</p>
 				<button onClick={messageClosed} className="close_modale">
-					close
+					close</button>
+			</div>
+			<form onSubmit={submitForm} className="form">
+			<div className="form-conatiner">
+				
+				<button type="submit" onClick={messageGreet}		
+				className="btn1">
+					Submit
 				</button>
 			</div>
 			<form onSubmit={submitForm} className="form">

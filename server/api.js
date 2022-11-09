@@ -17,6 +17,8 @@ router.post("/laptop_request", (req, res) => {
 
 	const query =
 		" insert into laptop_request (firstName, lastName, email, phoneNumber) values ($1, $2, $3, $4)";
+
+	
 	db.query(query, [firstName, lastName, email, phoneNumber])
 		.then(() => res.send("result.rows"))
 		.catch((error) => {
@@ -35,6 +37,7 @@ router.get("/laptop_request", async (req, res) => {
 				lastName: row.lastName,
 				email: row.email,
 				phoneNumber: row.phoneNumber,
+				
 			};
 		});
 		res.json(laptopRequests);
