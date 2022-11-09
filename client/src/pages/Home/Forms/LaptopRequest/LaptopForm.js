@@ -89,7 +89,7 @@ function LaptopForm() {
 						onChange={handleClick}
 						required
 					/>
-					<label className="class_label">Email address</label>
+					<label className="class_label">Email Address</label>
 					<input
 						type="text"
 						value={email}
@@ -99,7 +99,7 @@ function LaptopForm() {
 						onChange={handleClick}
 						required
 					/>
-					<label className="class_label">phon number </label>
+					<label className="class_label">phon Number </label>
 
 					<input
 						type="number"
