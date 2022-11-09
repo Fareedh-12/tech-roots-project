@@ -37,61 +37,87 @@ function LaptopForm() {
 			}),
 			headers: { "content-type": "application/json" },
 		});
-	}
+	};
+
+	const modale = document.querySelector('.modale-content');
+	const form = document.querySelector('.form');
+	
+
+	//function display greeting after submit the from
 	function messageAlert() {
-		alert(
-			"thank you for your completing the request form. your request have been recived "
-		);
-	}
+		document.body.style.backgroundColor = 'black';
+		console.log('heloo');
+		modale.style.display = 'block';
+		form.style.display = 'none';
+	};
+
+	function messageClosed() {
+		console.log('heloo');
+		modale.style.display = 'none';
+	};
+
 	return (
 		<div className="form-card">
-			<form onSubmit={submitForm} className="form">
-			<div className="form-conatiner">
-			<label>First Name</label>
-				<input 
-				    required
-					type="text"
-					value={firstName}
-					name="firstName"
-					placeholder="first name"
-					className="firstInput"
-					onChange={handleClick}
-				/>
-				<label>Last Name</label>
-				<input 
-				    required
-					type="text"
-					value={lastName}
-					name="lastName"
-					placeholder="lastName"
-					className="firstInput"
-					onChange={handleClick}
-				/>
-				<label>Email address</label>
-				<input
-				    required
-					type="text"
-					value={email}
-					name="email"
-					placeholder="email"
-					className="firstInput"
-					onChange={handleClick}
-				/>
-				<label>Phone Number</label>
-				<input
-				    required
-					type="number"
-					value={phoneNumber}
-					name="phoneNumber"
-					placeholder="phon number"
-					className="firstInput"
-					onChange={handleClick}
-				/>
-				<button type="submit"
-				onClick={messageAlert}
-				className="btn1">
-					Submit
+			<div className="modale-content">
+				<button onClick={messageClosed} className="close_modale">
+					&times;
 				</button>
+				<p className="newPragraph">
+					thank you for your completing the request
+					form. your request have been recived and you
+					have been added to our waiting list</p>
+			</div>
+			<form onSubmit={submitForm} className="form">
+				<div className="form-conatiner">
+					<label className="class_label">First Name </label>
+					<input
+
+						type="text"
+						value={firstName}
+						name="firstName"
+						placeholder="first name"
+						className="firstInput"
+						onChange={handleClick}
+						required
+					/>
+					<label className="class_label">Last  Name</label>
+					<input
+
+						type="text"
+						value={lastName}
+						name="lastName"
+						placeholder="lastName"
+						className="firstInput"
+						onChange={handleClick}
+						required
+					/>
+					<label className="class_label">Email address</label>
+					<input
+
+						type="text"
+						value={email}
+						name="email"
+						placeholder="email"
+						className="firstInput"
+						onChange={handleClick}
+						required
+					/>
+					<label className="class_label">phon number </label>
+
+					<input
+
+						type="number"
+						value={phoneNumber}
+						name="phoneNumber"
+						placeholder="phon number"
+						className="firstInput"
+						onChange={handleClick}
+						required
+					/>
+					<button type="submit" onClick={messageAlert}
+						className="btn1">
+						Submit
+					</button>
 				</div>
 			</form>
 		</div>
