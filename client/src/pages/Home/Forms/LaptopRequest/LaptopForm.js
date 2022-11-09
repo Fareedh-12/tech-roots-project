@@ -37,67 +37,63 @@ function LaptopForm() {
 			}),
 			headers: { "content-type": "application/json" },
 		});
-	};
+	}
 
-	const modale = document.querySelector('.modale-content');
-	const form = document.querySelector('.form');
-	
+	const modale = document.querySelector(".modale-content");
+	const form = document.querySelector(".form");
 
 	//function display greeting after submit the from
 	function messageAlert() {
-		document.body.style.backgroundColor = 'black';
-		console.log('heloo');
-		modale.style.display = 'block';
-		form.style.display = 'none';
-	};
+		document.body.style.backgroundColor = "black";
+		console.log("heloo");
+		modale.style.display = "block";
+		form.style.display = "none";
+	}
 
 	function messageClosed() {
-		console.log('heloo');
-		modale.style.display = 'none';
-	};
+		console.log("heloo");
+		modale.style.display = "none";
+	}
 
 	return (
 		<div className="form-card">
 			<div className="modale-content">
-				<button onClick={messageClosed} className="close_modale">
-					&times;
-				</button>
 				<p className="newPragraph">
-					thank you for your completing the request
-					form. your request have been recived and you
-					have been added to our waiting list</p>
+					thank you for your completing the request form. your request have been
+					recived and you have been added to our waiting list
+				</p>
+				<button onClick={messageClosed} className="close_modale">
+					close
+				</button>
 			</div>
 			<form onSubmit={submitForm} className="form">
 				<div className="form-conatiner">
 					<label className="class_label">First Name </label>
 					<input
-
 						type="text"
 						value={firstName}
 						name="firstName"
-						placeholder="first name"
+						placeholder="First Name"
 						className="firstInput"
 						onChange={handleClick}
 						required
 					/>
-					<label className="class_label">Last  Name</label>
+					<label className="class_label">Last Name</label>
 					<input
-
 						type="text"
 						value={lastName}
 						name="lastName"
-						placeholder="lastName"
+						placeholder="Last Name"
 						className="firstInput"
 						onChange={handleClick}
 						required
 					/>
 					<label className="class_label">Email address</label>
 					<input
-
 						type="text"
 						value={email}
 						name="email"
-						placeholder="email"
+						placeholder="Email"
 						className="firstInput"
 						onChange={handleClick}
 						required
@@ -105,17 +101,15 @@ function LaptopForm() {
 					<label className="class_label">phon number </label>
 
 					<input
-
 						type="number"
 						value={phoneNumber}
 						name="phoneNumber"
-						placeholder="phon number"
+						placeholder="Phone Number"
 						className="firstInput"
 						onChange={handleClick}
 						required
 					/>
-					<button type="submit" onClick={messageAlert}
-						className="btn1">
+					<button type="submit" onClick={messageAlert} className="btn1">
 						Submit
 					</button>
 				</div>
