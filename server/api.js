@@ -28,7 +28,7 @@ router.get("/laptop_request", async (req, res) => {
 	try {
 		const result = await db.query("SELECT * from laptop_request");
 
-		const laptopDonation = result.rows.map((row) => {
+		const laptopRequests = result.rows.map((row) => {
 			return {
 				firstName: row.firstname,
 				lastName: row.lastname,
@@ -36,7 +36,7 @@ router.get("/laptop_request", async (req, res) => {
 				phoneNumber: row.phonenumber,
 			};
 		});
-		res.json(laptopDonation);
+		res.json(laptopRequests);
 	} catch (e) {
 		console.error(e);
 		res.sendStatus(400);
