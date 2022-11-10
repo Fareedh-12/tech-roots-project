@@ -140,9 +140,10 @@ label {
 }
 .close_modale button {
 	color: black;
-	color: white;
-	width: 150px;
+	background-color: white;
+	width: 180px;
 	height: 40px;
+	border-radius: 1em;
 	font-size: 30px;
 	padding: 40px;
 }
@@ -151,7 +152,7 @@ label {
 	font-size: 1.6em;
 }
 .newPragraph {
-	color: green;
+	color: white;
 	display: hidden;
 }
 
@@ -165,6 +166,6 @@ label {
 	font-size: 1.6em;
 }
 .newPragraph {
-	color: green;
+	color: white;
 	display: hidden;
 }
