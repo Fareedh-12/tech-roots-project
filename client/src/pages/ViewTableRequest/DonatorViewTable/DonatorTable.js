@@ -31,8 +31,8 @@ function DonatorTable() {
 					<th>Address</th>
 					<th>Number Of Laptops</th>
 					<th>Phone Number</th>
-					<th>Email</th>
-					<th>delivery Option</th>
+					<th>Email Address</th>
+					<th>Delivery Option</th>
 				</tr>
 			</thead>
 			<tbody>{tableRows}</tbody>
