@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./DonatorForm.css";
+import { nanoid } from "nanoid";
 
 function DonatorForm() {
 	const [name, setName] = useState("");
@@ -46,6 +47,7 @@ function DonatorForm() {
 				phoneNumber: phoneNumber,
 				numberOfLaptops: numberOfLaptops,
 				deliveryOption: deliveryOption,
+				uuid: nanoid(10),
 			}),
 			headers: { "content-type": "application/json" },
 		});

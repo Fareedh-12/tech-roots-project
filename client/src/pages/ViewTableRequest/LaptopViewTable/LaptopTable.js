@@ -17,6 +17,7 @@ function LaptopTable() {
 				<th>{item.lastName}</th>
 				<th>{item.email}</th>
 				<th>{item.phoneNumber}</th>
+				<th>{item.uuid}</th>
 			</tr>
 		);
 	});
@@ -29,6 +30,7 @@ function LaptopTable() {
 					<th>Last Name</th>
 					<th>Email Address</th>
 					<th>Phone Number</th>
+					<th>uuid</th>
 				</tr>
 			</thead>
 			<tbody>{tableRows}</tbody>

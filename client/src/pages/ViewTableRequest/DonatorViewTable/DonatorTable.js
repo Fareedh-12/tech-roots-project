@@ -19,6 +19,7 @@ function DonatorTable() {
 				<th>{item.phoneNumber}</th>
 				<th>{item.email}</th>
 				<th>{item.deliveryOption}</th>
+				<th>{item.uuid}</th>
 			</tr>
 		);
 	});
@@ -33,6 +34,7 @@ function DonatorTable() {
 					<th>Phone Number</th>
 					<th>Email Address</th>
 					<th>Delivery Option</th>
+					<th>uuid</th>
 				</tr>
 			</thead>
 			<tbody>{tableRows}</tbody>

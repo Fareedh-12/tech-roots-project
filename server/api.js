@@ -12,21 +12,16 @@ router.get("/laptop_donation/:id", async (req, res) => {
 			"SELECT * from laptop_donation WHERE id = $1",
 			[req.params.id]
 		);
-		let id = result.rows[0].id;
-		let name = result.rows[0].name;
-		let address = result.rows[0].address;
-		let numberOfLaptops = result.rows[0].number_of_laptops;
-		let phoneNumber = result.rows[0].phone_number;
-		let email = result.rows[0].email;
-		let deliveryOption = result.rows[0].delivery_option;
+
 		let laptopDonation = {
-			id: id,
-			name: name,
-			address: address,
-			numberOfLaptops: numberOfLaptops,
-			phoneNumber: phoneNumber,
-			email: email,
-			deliveryOption: deliveryOption,
+			id: result.rows[0].id,
+			name: result.rows[0].name,
+			address: result.rows[0].address,
+			numberOfLaptops: result.rows[0].number_of_laptops,
+			phoneNumber: result.rows[0].phone_number,
+			email: result.rows[0].email,
+			deliveryOption: result.rows[0].delivery_option,
+			uuid: result.rows[0].uuid,
 		};
 		res.json(laptopDonation);
 	} catch (e) {
@@ -38,22 +33,24 @@ router.get("/laptop_donation/:id", async (req, res) => {
 router.get("/laptop_request/:id", async (req, res) => {
 	try {
 		const result = await db.query(
-			"SELECT * from laptop_request WHERE id = $1",
+			"SELECT * from laptop_request WHERE uuid = $1",
 			[req.params.id]
 		);
 		// let id = result.rows[0].id;
 		let laptopRequest = {
+			id: result.rows[0].id,
 			firstName: result.rows[0].firstname,
 			lastName: result.rows[0].lastname,
 			email: result.rows[0].email,
 			phoneNumber: result.rows[0].phonenumber,
 			status: result.rows[0].laptop_request_status,
+			uuid: result.rows[0].uuid,
 		};
 
 		if (laptopRequest.status === "ACTIVE") {
 			const laptopAssignmentResult = await db.query(
 				"SELECT * from laptop_assignment WHERE laptop_request_id = $1",
-				[req.params.id]
+				[laptopRequest.id]
 			);
 
 			let laptopAssignment = {};
@@ -99,6 +96,7 @@ router.post("/laptop_request", async (req, res) => {
 	let lastName = req.body.lastName;
 	let email = req.body.email;
 	let phoneNumber = req.body.phoneNumber;
+	let uuid = req.body.uuid;
 
 	let laptopDonationResult = await db.query(
 		"SELECT * FROM laptop_donation d WHERE (SELECT COUNT(*) FROM laptop_assignment a WHERE a.laptop_donation_id = d.id) < d.number_of_laptops ORDER BY d.id LIMIT 1"
@@ -110,8 +108,8 @@ router.post("/laptop_request", async (req, res) => {
 		};
 	}
 	const query =
-		" insert into laptop_request (firstname, lastname, email, phonenumber) values ($1, $2, $3, $4) returning id";
-	db.query(query, [firstName, lastName, email, phoneNumber])
+		" insert into laptop_request (firstname, lastname, email, phonenumber, uuid) values ($1, $2, $3, $4, $5) returning id, uuid";
+	db.query(query, [firstName, lastName, email, phoneNumber, uuid])
 		.then((queryResult) => {
 			if (laptopDonation.id) {
 				const assignmentQuery =
@@ -135,6 +133,8 @@ router.get("/laptop_request", async (req, res) => {
 				lastName: row.lastname,
 				email: row.email,
 				phoneNumber: row.phonenumber,
+				status: row.laptop_request_status,
+				uuid: row.uuid,
 			};
 		});
 
@@ -153,9 +153,10 @@ router.post("/laptop_donation", (req, res) => {
 	let phoneNumber = req.body.phoneNumber;
 	let email = req.body.email;
 	let deliveryOption = req.body.deliveryOption;
+	let uuid = req.body.uuid;
 
 	const query =
-		" insert into laptop_donation (name, address, number_of_laptops, phone_number, email, delivery_option) values ($1, $2, $3, $4, $5, $6) returning id, number_of_laptops";
+		" insert into laptop_donation (name, address, number_of_laptops, phone_number, email, delivery_option, uuid) values ($1, $2, $3, $4, $5, $6, $7) returning id, number_of_laptops, uuid";
 
 	db.query(query, [
 		name,
@@ -164,6 +165,7 @@ router.post("/laptop_donation", (req, res) => {
 		phoneNumber,
 		email,
 		deliveryOption,
+		uuid,
 	])
 		.then(async (queryResult) => {
 			const requestIDResult = await db.query(
@@ -205,6 +207,7 @@ router.get("/laptop_donation", async (req, res) => {
 				phoneNumber: row.phone_number,
 				email: row.email,
 				deliveryOption: row.delivery_option,
+				uuid: row.uuid,
 			};
 		});
 		res.json(laptopDonation);

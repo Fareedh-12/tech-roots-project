@@ -15,17 +15,13 @@ export function RequestView() {
 							className="btn btn-outline-success my-2 my-sm-0"
 							id="laptop-list-bt"
 						>
-							<a>
-								<Link to="/list-laptop-requests"> Laptop List Table</Link>
-							</a>
+							<Link to="/list-laptop-requests"> Laptop List Table</Link>
 						</button>
 						<button
 							id="Donator-list-bt"
 							className="btn btn-outline-success my-2 my-sm-0"
 						>
-							<a>
-								<Link to="/list-donator-requests">Donator List Table</Link>
-							</a>
+							<Link to="/list-donator-requests">Donator List Table</Link>
 						</button>
 					</div>
 				</nav>
