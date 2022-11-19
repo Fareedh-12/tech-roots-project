@@ -1,6 +1,6 @@
-import { request } from "express";
 import { Router } from "express";
 import db from "./db";
+import { io } from "./socket";
 
 import logger from "./utils/logger";
 
@@ -167,25 +167,29 @@ router.post("/laptop_donation", (req, res) => {
 	])
 		.then(async (queryResult) => {
 			const requestIDResult = await db.query(
-				"SELECT id FROM laptop_request  WHERE id NOT IN (SELECT laptop_request_id FROM laptop_assignment)"
+				"SELECT id FROM laptop_request  WHERE id NOT IN (SELECT laptop_request_id FROM laptop_assignment) limit $1",
+				[numberOfLaptops]
 			);
 
-			let numberOfLaptops = queryResult.rows[0].number_of_laptops;
 			/* comparing the number of requests to the number of laptops donated 
 			Then mapping the number of requests the available laptops*/
-			if (requestIDResult.rows.length > 0) {
-				requestIDResult.rows.map((row) => {
-					if (numberOfLaptops > 0) {
-						const assignmentQuery =
-							" insert into laptop_assignment (laptop_donation_id, laptop_request_id) values ($1, $2)";
-						db.query(assignmentQuery, [queryResult.rows[0].id, row.id]);
-						numberOfLaptops--;
+
+			for (let laptopRequest of requestIDResult.rows) {
+				const assignmentQuery =
+					"insert into laptop_assignment (laptop_donation_id, laptop_request_id) values ($1, $2)";
+				await db.query(assignmentQuery, [
+					queryResult.rows[0].id,
+					laptopRequest.id,
+				]);
+				io.to("laptop_request:" + laptopRequest.id).emit(
+					"laptop_request:changeStatus",
+					{
+						id: laptopRequest.id,
+						status: "ASSIGNED",
 					}
-				});
-				res.status(200).json({ success: " was success" });
-			} else {
-				res.status(404).json({ success: "No unassigned laptop_requests" });
+				);
 			}
+			res.status(200).json({ success: " was success" });
 		})
 		.catch((error) => {
 			console.error(error);

@@ -3,6 +3,11 @@ import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 import ButtonComponent from "./ButtonComponent";
+import { io } from "socket.io-client";
+
+const socket = io(window.origin, {
+	path: "/api/socket.io",
+});
 
 export function RequestStatus() {
 	const [request, setRequest] = useState(null);
@@ -19,6 +24,19 @@ export function RequestStatus() {
 				setRequest(laptopRequest);
 			});
 	}, [id, needsReloading]);
+
+	useEffect(() => {
+		socket.emit("laptop_request:register", { laptopRequestId: id });
+		socket.on("laptop_request:changeStatus", (change) => {
+			if (id == change.id) {
+				console.log("I'm updated to:" + change.status);
+				setNeedsReloading(true);
+			}
+		});
+		return () => {
+			socket.off("laptop_request:changeStatus");
+		};
+	}, [id]);
 
 	// gets laptop donation from the request
 
